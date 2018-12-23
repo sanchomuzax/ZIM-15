@@ -6,7 +6,7 @@
 * **Nyelv:** Turbo Pascal 6.0
 * **Megjegyzés:** Az alábbi leírás egy szakdolgozat része. Olyan külső hivatkozásokra, fájlokra és ábrákra hivatkozik, melyek a jelenlegi leírásnak nem részei. Ettől függetlenól a dokumentáció kellően részletes ahhoz, hogy érthető legyen a program működési elve.
 * **LETÖLTÉS:** A kész, lefordított. `.EXE` program [**innen letölthető**](https://github.com/sanchomuzax/ZIM-15/blob/master/zim15.zip)
-* **FIGYELEM!** Modern Windows rendszerekkel már nem kompatibilis. Például a [DOSBox](https://www.dosbox.com/) segítségével futtatható.
+* **FIGYELEM!** Modern Windows rendszerekkel már nem kompatibilis. Például a [DOSBox](https://www.dosbox.com/) segítségével futtatható, ahol angol billentyűzetkiosztást érdemes használni.
 
 ## Gyakorlati megvalósítás:
 
