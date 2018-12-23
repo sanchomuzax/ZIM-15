@@ -4,7 +4,7 @@
 
 * **Készült:** Virág Attila, Budapest, KKMF, **1995. május 7.**
 * **Nyelv:** Turbo Pascal 6.0
-* **Megjegyzés:** Az alábbi leírás egy szakdolgozat része. Olyan külső hivatkozásokra, fájlokra és ábrákra hivatkozik, melyek a jelenlegi leírásnak nem részei. Ettől függetlenól a dokumentáció kellően részletes ahhoz, hogy érthető legyen a program működési elve.
+* **Megjegyzés:** Az alábbi leírás egy szakdolgozat része. Olyan külső hivatkozásokra, fájlokra és ábrákra hivatkozik, melyek a jelenlegi leírásnak nem részei. Ettől függetlenól a dokumentáció kellően részletes ahhoz, hogy érthető legyen a program működési elve. A dokumentáció 1995-ben készült, a helyesírási hibákon kívül más módosítás nem történt rajta.
 * **LETÖLTÉS:** A kész, lefordított. `.EXE` program [**innen letölthető**](https://github.com/sanchomuzax/ZIM-15/blob/master/zim15.zip)
 * **FIGYELEM!** Modern Windows rendszerekkel már nem kompatibilis. Például a [DOSBox](https://www.dosbox.com/) segítségével futtatható, ahol angol billentyűzetkiosztást érdemes használni.
 
