@@ -76,7 +76,7 @@ Már említettem a forrásnyelvű UNIT jól dokumentáltságát, áttekinthetős
 
 Nem építettem fel fontossági sorrendet az általam megírt eljárások között, így azok tárgyalását a forrásnyelvű programlista folytonossága alapján végzem.
 
-Kimeneti változóként (globális változó) deklaráltam az axi:array of real tömböt. Ennek oka, hogy kilépve a UNIT-ból a tömb elemei megadják az axisok szögadatait fokban, lehetővé téve pontok felvételét. A konstans definíció is globálisan történik, esetleges külső felhasználás érdekében. Némelyik konstans külsőleg változtatható is (például testek színei, vagy az aktív lap sorszáma).
+Kimeneti változóként (globális változó) deklaráltam az `axi:array of real` tömböt. Ennek oka, hogy kilépve a UNIT-ból a tömb elemei megadják az axisok szögadatait fokban, lehetővé téve pontok felvételét. A konstans definíció is globálisan történik, esetleges külső felhasználás érdekében. Némelyik konstans külsőleg változtatható is (például testek színei, vagy az aktív lap sorszáma).
 
 ## Felhasználói eljárások:
 
