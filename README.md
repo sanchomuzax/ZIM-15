@@ -1,6 +1,8 @@
 # ZIM-15
 
-1995-05-07, Budapest, KKMF
+Készült: Virág Attila, Budapest, KKMF, 1995-05-07
+
+Nyelv: Turbo Pascal 6.0
 
 ## Gyakorlati megvalósítás:
 
