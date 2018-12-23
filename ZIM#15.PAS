@@ -1,32 +1,32 @@
 program zim15;
 
 {
-	ZIM-15 t°pus£ ipari robotot szimul†l¢ program.
+	ZIM-15 t√≠pus√∫ ipari robotot szimul√°l√≥ program.
 
 
 				V 1.5 beta
 
 
-	95.05.07.					Vir†g Attila
+	95.05.07.					Vir√°g Attila
 }
 
 uses
-	crt, graph, grdrvrs;		{Haszn†lt unit-ok megad†sa}
+	crt, graph, grdrvrs;		{Haszn√°lt unit-ok megad√°sa}
 
 const
 
-	mm=200;				{A val¢s adatok mÇretar†nya}
+	mm=200;				{A val√≥s adatok m√©retar√°nya}
 
-	rad=pi/180;			{radi†nra sz†mol†s konstansa}
+	rad=pi/180;			{radi√°nra sz√°mol√°s konstansa}
 
-	{Az axisok t†vols†ga mm-ben megadva:}
+	{Az axisok t√°vols√°ga mm-ben megadva:}
 
 	kar1=787/mm;
 	kar2=600/mm;
 	kar3=900/mm;
 	kar4=112/mm;
 
-	{Az axisok szîg-hat†radatai fokban megadva:}
+	{Az axisok sz√∂g-hat√°radatai fokban megadva:}
 
 	max	: array	[1..6] of integer =(	165,
 						40,
@@ -61,33 +61,33 @@ var
 
 	active	: byte;
 
-	x0, y0	: real;					{b†zis-frÇm a kÇpen}
+	x0, y0	: real;					{b√°zis-fr√©m a k√©pen}
 
-	new	: array [	1..3]	of real;	{rot†lt koordin†t†k}
+	new	: array [	1..3]	of real;	{rot√°lt koordin√°t√°k}
 
-	rot	: array	[0..3,	0..3] 	of real;	{rot†ci¢s m†trix}
+	rot	: array	[0..3,	0..3] 	of real;	{rot√°ci√≥s m√°trix}
 
-	ang	: array [	1..3]	of real;	{ROTATE bemen€ szîgei}
+	ang	: array [	1..3]	of real;	{ROTATE bemen≈ë sz√∂gei}
 
-	kor	: array [	1..3]	of real;	{ROTATE bemen€ k.-t†i}
+	kor	: array [	1..3]	of real;	{ROTATE bemen≈ë k.-t√°i}
 
-	look_ang: array [	1..3]	of real;	{nÇz€ponti szîgek}
+	look_ang: array [	1..3]	of real;	{n√©z≈ëponti sz√∂gek}
 
-	pnt	: array [0..6,	1..3]	of real;	{vil†gkoord. adatok}
+	pnt	: array [0..6,	1..3]	of real;	{vil√°gkoord. adatok}
 
 	dat	: array [0..6,	1..12,
 				1..3]	of real;	{testek adatai}
 
 	bod	: array [0..6,	1..12,
-				1..3]	of integer;	{tîrlend€ adatok}
+				1..3]	of integer;	{t√∂rlend≈ë adatok}
 
-	pic	: array	[	1..2]	of integer;	{kÇppont koordin†t†k}
+	pic	: array	[	1..2]	of integer;	{k√©ppont koordin√°t√°k}
 
-	eye	: array [	1..3]	of real;	{nÇz€pont orient†ci¢}
+	eye	: array [	1..3]	of real;	{n√©z≈ëpont orient√°ci√≥}
 
-	axi	: array	[	0..6]	of real;	{axis szîgadatok}
+	axi	: array	[	0..6]	of real;	{axis sz√∂gadatok}
 
-PROCEDURE grafinit;			{KÇperny€meghajt¢k inicializ†l†sa}
+PROCEDURE grafinit;			{K√©perny≈ëmeghajt√≥k inicializ√°l√°sa}
 var
 	gdriver, gmode, errorcode	: integer;
 begin
@@ -112,7 +112,7 @@ begin
 	end;
 end;
 
-PROCEDURE data;			{Testek adatainak beolvas†sa a ZIM#15.DAT-b¢l}
+PROCEDURE data;			{Testek adatainak beolvas√°sa a ZIM#15.DAT-b√≥l}
 var
 	f	: text;
 
@@ -131,10 +131,10 @@ begin
 
 	{$i+};
 
-	for i:=0 to 5 do			{dat [i,j,k] v†ltoz¢ feltîltÇse}
-		for j:=1 to 12 do		{i - test sorsz†ma}
-			for k:=1 to 3 do	{j - test pontsz†ma}
-			begin			{k - x, y ill. z koordin†ta}
+	for i:=0 to 5 do			{dat [i,j,k] v√°ltoz√≥ felt√∂lt√©se}
+		for j:=1 to 12 do		{i - test sorsz√°ma}
+			for k:=1 to 3 do	{j - test pontsz√°ma}
+			begin			{k - x, y ill. z koordin√°ta}
 				read(f, dat [i,j,k]);
 				dat [i,j,k]:=dat [i,j,k]/mm;
 			end;
@@ -142,15 +142,15 @@ begin
 
 end;
 
-PROCEDURE init;				{V†ltoz¢k szÅksÇges ÇrtÇkad†sa}
+PROCEDURE init;				{V√°ltoz√≥k sz√ºks√©ges √©rt√©kad√°sa}
 var
 	i : byte;
 begin
-	grafinit;			{Grafikus-m¢d be†ll°t†sa}
+	grafinit;			{Grafikus-m√≥d be√°ll√≠t√°sa}
 
-	data;				{Test adatainak beolvas†sa}
+	data;				{Test adatainak beolvas√°sa}
 
-	zoom:=20;			{nagyit†si ar†ny}
+	zoom:=20;			{nagyit√°si ar√°ny}
 {
 	cleardevice;
 	setvisualpage(0);
@@ -158,24 +158,24 @@ begin
 	cleardevice;
 	Active := 1;
 }
-	x0:=getmaxx/2;			{orig¢ be†ll°t†sa}
+	x0:=getmaxx/2;			{orig√≥ be√°ll√≠t√°sa}
 	y0:=getmaxy/3*2;
 
-	eye [1]:=-6;			{NÇz€ponti torz°t†s be†ll°t†sa}
+	eye [1]:=-6;			{N√©z≈ëponti torz√≠t√°s be√°ll√≠t√°sa}
 	eye [2]:=30;
 	eye [3]:=9;
 
-	step:=5;			{lÇpÇskîz}
+	step:=5;			{l√©p√©sk√∂z}
 
-	for i:=0 to 6 do axi [i]:=0;	{axisok alap†llapota 0 fok}
+	for i:=0 to 6 do axi [i]:=0;	{axisok alap√°llapota 0 fok}
 
-	for i:=1 to 3 do		{tîbbi sz†mol†sban haszn†lt szîg is}
+	for i:=1 to 3 do		{t√∂bbi sz√°mol√°sban haszn√°lt sz√∂g is}
 	begin
 		ang [i]:=0;
 		look_ang [i]:=0;
 	end;
 
-	pnt [0,1]:=0;			{Ezeket elÇg egyszer kisz†molni}
+	pnt [0,1]:=0;			{Ezeket el√©g egyszer kisz√°molni}
 	pnt [0,2]:=0;
 	pnt [0,3]:=0;
 
@@ -185,11 +185,11 @@ begin
 
 	pnt [2,1]:=0;
 	pnt [2,2]:=0;
-	pnt [2,3]:=kar1;		{A tîbbit a MOVE_TO-ban sz†molja}
+	pnt [2,3]:=kar1;		{A t√∂bbit a MOVE_TO-ban sz√°molja}
 
 end;
 
-FUNCTION arcsin(x:real):real;		{Kimen€ adat -pi/2 es +pi/2 kîzt }
+FUNCTION arcsin(x:real):real;		{Kimen≈ë adat -pi/2 es +pi/2 k√∂zt }
 var
 	y	: real;
 begin
@@ -199,7 +199,7 @@ begin
 	arcsin:=y;
 end;
 
-FUNCTION arccos(x:real):real;   	{Kimen€ adat 0 Çs pi kîzîtt}
+FUNCTION arccos(x:real):real;   	{Kimen≈ë adat 0 √©s pi k√∂z√∂tt}
 var
 	y	: real;
 begin
@@ -211,10 +211,10 @@ begin
 	arccos:=y;
 end;
 
-PROCEDURE rotate;		{Adott pont elforgat†sa a saj†t frÇmben. }
-var				{Bemen€ adatok: kor [1..3] Çs ang [1..3],}
-	i : byte;		{ahol az 1. a pont koordin†t†ja Çs a 2. a}
-begin				{tengelyeken vett orient†ci¢ radi†nban...}
+PROCEDURE rotate;		{Adott pont elforgat√°sa a saj√°t fr√©mben. }
+var				{Bemen≈ë adatok: kor [1..3] √©s ang [1..3],}
+	i : byte;		{ahol az 1. a pont koordin√°t√°ja √©s a 2. a}
+begin				{tengelyeken vett orient√°ci√≥ radi√°nban...}
 
 	for i:= 1 to 3 do if ang [i] >= 2*pi then ang [i]:=ang [i]-2*pi;
 
@@ -256,40 +256,40 @@ begin				{tengelyeken vett orient†ci¢ radi†nban...}
 	rot [3,3]:= 	 cos(ang [1])
 			*cos(ang [2]);
 
-	for i:=1 to 3 do			{Kimeneti v†ltoz¢ feltîltÇse}
+	for i:=1 to 3 do			{Kimeneti v√°ltoz√≥ felt√∂lt√©se}
 	begin
 		new [i]:=	rot [1,i]* kor [1]+
 				rot [2,i]* kor [2]+
-				rot [3,i]* kor [3];	{Az £j tÇrkoord.-†k}
+				rot [3,i]* kor [3];	{Az √∫j t√©rkoord.-√°k}
 
-		ang [i]:=0;				{Biztons†gi tîrlÇs}
+		ang [i]:=0;				{Biztons√°gi t√∂rl√©s}
 	end;
 
 end;
 
-PROCEDURE trans;	{KÇpkoordin†t†v† sz†mol†s}
+PROCEDURE trans;	{K√©pkoordin√°t√°v√° sz√°mol√°s}
 var
-	pro	: real;					{Levet°tÇsi ar†ny}
+	pro	: real;					{Levet√≠t√©si ar√°ny}
 
 	i	: byte;
 
 begin		
 
-	for i:= 1 to 3 do ang [i]:=look_ang [i]+ang [i];{NÇz€ponti elfor-}
+	for i:= 1 to 3 do ang [i]:=look_ang [i]+ang [i];{N√©z≈ëponti elfor-}
 
-	rotate;						{gat†s vÇgrehajt†sa}
+	rotate;						{gat√°s v√©grehajt√°sa}
 
-	if ((new [2]-eye [2])=0) then pro:=0		{NÇz€ szeme}
+	if ((new [2]-eye [2])=0) then pro:=0		{N√©z≈ë szeme}
 	else pro:=new [2]/(new [2]-eye [2]);
 
- {S°kadatok:}
+ {S√≠kadatok:}
 
-	pic [1]:=round(x0-zoom*(new [1]-pro*(new [1]-eye [1])));		{KÇppont adatok}
+	pic [1]:=round(x0-zoom*(new [1]-pro*(new [1]-eye [1])));		{K√©ppont adatok}
 	pic [2]:=round(y0-zoom*(new [3]-pro*(new [3]-eye [3])));
 
 end;
 
-FUNCTION limiter : byte;{Axisok hat†rÇrtÇk vizsg†lata logikai kimenettel}
+FUNCTION limiter : byte;{Axisok hat√°r√©rt√©k vizsg√°lata logikai kimenettel}
 var
 	i, j	: byte;
 begin
@@ -315,7 +315,7 @@ begin
 	limiter:=j;
 end;
 
-PROCEDURE control_on (l :integer);	{Axisadatok kiirat†sa BE}
+PROCEDURE control_on (l :integer);	{Axisadatok kiirat√°sa BE}
 var
 	i : byte;
 begin
@@ -331,21 +331,21 @@ begin
 	end;
 end;
 
-PROCEDURE control_off(l :integer);	{Axisadatok kiirat†sa KI}
+PROCEDURE control_off(l :integer);	{Axisadatok kiirat√°sa KI}
 var
 	i : byte;
 
 begin
 	setcolor(black);
 
-	outtextxy(0,l*10,'€€€€€€€');
+	outtextxy(0,l*10,'‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà');
 
-	for i:=1 to 3 do outtextxy(0,100+i*10,'€€€€€€€');
+	for i:=1 to 3 do outtextxy(0,100+i*10,'‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà');
 end;
 
 FUNCTION angel(a : byte; b : byte) : real;
 begin			{Adott test -bemeneten 'a'- adott tengely}
-	case a of	{kîrÅli -bemeneten 'b'- forgat†s kisz†m°t†sa.}
+	case a of	{k√∂r√ºli -bemeneten 'b'- forgat√°s kisz√°m√≠t√°sa.}
 
 		0:
 		begin
@@ -426,11 +426,11 @@ end;
 
 PROCEDURE body(num : byte; color : word);
 var				{Adott test -bemeneten 'num'- adott}
-	i, j	: byte;		{sz°nnel -bemeneten 'color'- tîrtÇn€
-							kirajzol†sa}
+	i, j	: byte;		{sz√≠nnel -bemeneten 'color'- t√∂rt√©n≈ë
+							kirajzol√°sa}
 begin
 
-	if color<>black then	{Ha nem tîrîljÅk, nem sz†moljuk £jra.}
+	if color<>black then	{Ha nem t√∂r√∂lj√ºk, nem sz√°moljuk √∫jra.}
 	begin
 		for i:=1 to 12 do
 		begin
@@ -450,13 +450,13 @@ begin
 
 			for j:=1 to 3 do ang [j]:=angel(num,j);
 
-			rotate;			{Test orient†ci¢ja}
+			rotate;			{Test orient√°ci√≥ja}
 
 			for j:=1 to 3 do kor [j]:=pnt [num,j]+new [j];
 
 			trans;			{Test helyvektora}
 
-			bod [num,i,1]:=pic [1];	{Megjegyezni a tîrlÇshez}
+			bod [num,i,1]:=pic [1];	{Megjegyezni a t√∂rl√©shez}
 			bod [num,i,2]:=pic [2];
 		end;
 	end;
@@ -499,11 +499,11 @@ end;
 
 PROCEDURE move_to(ax1, ax2, ax3, ax4, ax5, ax6: real);
 var
-	h	: real;					{ax2-t€l ax4-ig}
+	h	: real;					{ax2-t≈ël ax4-ig}
 
 	f	: real;					{h & y teng. szoge}
 
-	g	: real;					{y' teng.-re vetÅlet}
+	g	: real;					{y' teng.-re vet√ºlet}
 
 	s	: real;					{ax2+ax3+ax4}
 
@@ -514,10 +514,10 @@ var
 	i, j	: byte;
 
 begin
-	i:=limiter;			{SzÇls€ÇrtÇk figyelÇse}
+	i:=limiter;			{Sz√©ls≈ë√©rt√©k figyel√©se}
 
-	ax1:=ax1*rad;			{«tsz†mol†s radi†nra, Çs }
-	ax2:=ax2*rad+pi;		{alaphelyzet orient†ci¢ja}
+	ax1:=ax1*rad;			{√Étsz√°mol√°s radi√°nra, √©s }
+	ax2:=ax2*rad+pi;		{alaphelyzet orient√°ci√≥ja}
 	ax3:=ax3*rad+pi/2;
 	ax4:=ax4*rad+pi;
 	ax5:=ax5*rad;
@@ -573,18 +573,18 @@ begin
 
 	for i:=0 to 5 do body(i,black);
 
-	for i:=0 to 5 do body(i,white);		{÷j test kirajzol†sa}
+	for i:=0 to 5 do body(i,white);		{√çj test kirajzol√°sa}
 
 {	page;}
 end;
 
-PROCEDURE axis(a : byte; b : real);	{Az 'a' axis 'b'-vel tîrtÇn€ v†ltoz†sa}
+PROCEDURE axis(a : byte; b : real);	{Az 'a' axis 'b'-vel t√∂rt√©n≈ë v√°ltoz√°sa}
 var
 	i : byte;
 begin
 	axi [a]:=axi [a]+b;
 
-	{Orient†ci¢ megtart†sa vÇgett:}
+	{Orient√°ci√≥ megtart√°sa v√©gett:}
 
 	if 	(axi [2]>= min[2]) and
 		(axi [2]<= max[2]) and
@@ -599,10 +599,10 @@ begin
 		axi [3],
 		axi [4],
 		axi [5],
-		axi [6]);			{A szîgek felvÇtele}
+		axi [6]);			{A sz√∂gek felv√©tele}
 end;
 
-PROCEDURE normal;				{Alap†llapot felvÇtele}
+PROCEDURE normal;				{Alap√°llapot felv√©tele}
 var
 	i, j	: byte;
 begin
@@ -623,7 +623,7 @@ begin
 		axi [6]);
 end;
 
-PROCEDURE look(a : byte; b : real);	{NÇz€pont v†ltoztat†sa}
+PROCEDURE look(a : byte; b : real);	{N√©z≈ëpont v√°ltoztat√°sa}
 begin
 	look_ang [a]:=look_ang [a]+b;
 
@@ -639,7 +639,7 @@ begin
 		axi [6]);
 end;
 
-PROCEDURE inkey;			{Billenty‹zet figyelÇse}
+PROCEDURE inkey;			{Billenty‚ñÑzet figyel√©se}
 var
 	quit	: boolean;
 
@@ -750,7 +750,7 @@ begin
 			' '	:	quit:=true;
 		end;
 
-        until quit=true;		{Kisz†ll†s SPACE-re}
+        until quit=true;		{Kisz√°ll√°s SPACE-re}
 end;
 
 {****************************************************************************}
