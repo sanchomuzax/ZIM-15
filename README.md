@@ -1,6 +1,6 @@
 # ZIM-15 - 3D robot szimuláció
 
-* **Készült:** Virág Attila, Budapest, KKMF, 1995-05-07
+* **Készült:** Virág Attila, Budapest, KKMF, **1995. május 7.**
 * **Nyelv:** Turbo Pascal 6.0
 * **Megjegyzés:** Az alábbi leírás egy szakdolgozat része. Olyan külső hivatkozásokra, fájlokra és ábrákra hivatkozik, melyek a jelenlegi leírásnak nem részei. Ettől függetlenól a dokumentáció kellően részletes ahhoz, hogy érthető legyen a program működési elve.
 
