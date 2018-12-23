@@ -1,4 +1,4 @@
-# ZIM-15
+# ZIM-15 - 3D robot szimuláció
 
 Készült: Virág Attila, Budapest, KKMF, 1995-05-07
 
@@ -8,7 +8,7 @@ Nyelv: Turbo Pascal 6.0
 
 A program kifejlesztésekor a következő problémákkal kellet szembenéznem:
 
-1. A megrajzolt robot felépítésében és arányaiban összehasonlítható legyen a robotlaborunkban megtalálható ZIM-15 típusú ipari robot manipulátor felépítésével. Az animáció sebessége a mozgás során a lehetőségekhez mérten érje el a valóságos robot mozgási sebességét.
+1. A megrajzolt robot felépítésében és arányaiban összehasonlítható legyen a robotlaborunkban megtalálható **ZIM-15** típusú ipari robot manipulátor felépítésével. Az animáció sebessége a mozgás során a lehetőségekhez mérten érje el a valóságos robot mozgási sebességét.
 2. A kirajzolás villogás-mentes legyen, és a megjelenő alakzatok elkülöníthetőek legyenek egymástól.
 3. A nézőpontot változtatni lehessen, elérve a robot bármely pontját.
 4. A megírt UNIT-ot illeszteni lehessen egy főprogramhoz, mely a robot további fejlesztését, mozgatását és programozását teszi lehetővé.
@@ -17,9 +17,10 @@ A program kifejlesztésekor a következő problémákkal kellet szembenéznem:
 Persze, még számos támpontot felírhattam volna, mely a program megírása során felmerült, de ezek vagy alapvető elvárások, vagy a már említett feladatok, célkitűzések közé illeszthetőek.
 
 A feladat megtervezésekor figyelembe vettem a rendelkezésemre álló tudásanyagot, mely a robotok matematikájával és a számítógépes animációval foglalkozik. A kettő együttes figyelembevétele hozhatta csak létre a működő szoftvert.
-Problémák általános tárgyalása:
 
-### 1. 
+## Problémák általános tárgyalása:
+
+### 1. A megjelenítés módja
 
 Elsőként felmerülő problémát a megjelenítés módja jelentette: Milyen formában jelenjen meg a szimulált robot a számítógép monitoron? Az ezzel foglalkozó irodalmakban egyértelmű válasz a kérdésre a háló-rajz volt. Tehát a megjelenésre kerülő alakzatokat, testeket kizárólag ezzel a módszerrel, vagyis téglatestekké történő leegyszerűsítésükkel kaphatjuk meg. A robotot mozgó alkatrészeire kellett képzeletben bontanom, s a lehetőségekhez mérten élethű mását kellett adnom azoknak.
 
@@ -33,11 +34,11 @@ Hét test sorrendre: talapzat, robot test, felkar, alkar, kézfej, csukló, aszt
 
 A beolvasott adatokat egyszer töltöm fel egy tömbbe, melyekre a UNIT működése során mindig szükség van. Ezt a műveletet a PROCEDURE data látja el, mely hibaüzenetet ad, ha nem találta meg a működési könyvtárában a ZIM#15.DAT file-t.
 
-### 2. 
+### 2. Villogás kezelése
 
 A villogás-mentesség, mint probléma, azért merült fel, mert a képfrissítés során használható eljárások nem mindegyike képes kihasználni az emberi szem tehetetlenségét.
 
-Az egyik -legegyszerűbb- eljárás során letöröljük a képernyőt és utána kirajzoljuk az új alakzatot. Az alkalmazott módszer hibája -egyszerűségénél fogva- az, hogy meglehetősen villog a kirajzolt sorozatkép egy mozgatás során. Ha csak az előző alakzatot töröljük le saját inverzével, a mi esetünkben azért nem célravezető mert -utána számolva- 140! darab vonalat kell "végigzavarnunk" egymáson. Mivel a Pascal nyelv nem éppen a leggyorsabb vonalhúzó eljárással dolgozik, ezért ez sem a leg célravezetőbb eljárás a villogásmentesség érdekében.
+Az egyik legegyszerűbb eljárás során letöröljük a képernyőt és utána kirajzoljuk az új alakzatot. Az alkalmazott módszer hibája -egyszerűségénél fogva- az, hogy meglehetősen villog a kirajzolt sorozatkép egy mozgatás során. Ha csak az előző alakzatot töröljük le saját inverzével, a mi esetünkben azért nem célravezető mert -utána számolva- 140! darab vonalat kell "végigzavarnunk" egymáson. Mivel a Pascal nyelv nem éppen a leggyorsabb vonalhúzó eljárással dolgozik, ezért ez sem a leg célravezetőbb eljárás a villogásmentesség érdekében.
 
 Nagyfelbontású grafikus képernyők rendelkeznek azzal a tulajdonsággal, hogy bizonyos felbontás módokat használva egyszerre több munkalapot is használhatunk a video-memóriában. Ennek előnye, hogy a video-memóriát felhasználva jelentősen gyorsíthatjuk a megjelenítéseket. Egyik -esetünkben nem bevált- módszer, miszerint a nem látható munkalapon előre megrajzolt alakzatokat átmásoljuk, átvágjuk grafikus memóriacím olvasással a látható lapra. A Turbo Pascal 6.0 nyelv igaz, rendelkezik e lehetőség megvalósítására alkalmas utasításokkal, de nem a leggyorsabbak azok, mivel nem közvetlen a memóriacímek közötti másolást teszi lehetővé, hanem egy memóriára irányított pointeren keresztül tudjuk átmásolni a látható munkalapra a képünket.
 
@@ -45,15 +46,15 @@ Viszont igen gyors eljárást biztosít a képernyők lapozása. Ekkor az aktív
 
 Tehát keresnem kellett egy olyan grafikus képernyőmódot, mely lehetővé teszi egynél több munkalap alkalmazását szinte mindegyik videokártyán. Végső döntésem a VGAMed felbontásra esett, mely 640x350 képernyőpont megjelenítését teszi lehetővé 16 színnel. Mindegyik VGA kártya ismeri ezt az üzemmódot, s mivel a program működéséhez minimum matematikai koprocesszorral ellátott gép-konfiguráció szükséges, ezért feltételeztem, minimum ilyen volumenű grafikus kártya megtalálható ezeken a számítógépeken. A színes üzemmód az alakzatok biztos elkülönítése érdekében szükséges.
 
-### 3. 
+### 3. A nézőpont változása
 
 A nézőpont változtatása magával hozza annak lehetőségét, hogy a robotot igen közelről is megtekinthessük. Mivel a roboton kívül más adatokat is szeretnénk egyidőben a képernyőn megjeleníteni, ezért a szimulált alakzatot az előző kívánalom érdekében egy ablakban kell tartanunk, oly formán, hogy az ablakon kívülre ne rajzoljon a program vonalakta. A Pascal nyelv rendelkezik azzal a lehetőséggel, hogy az aktuális rajzoló ablak méretét mi határozzuk meg a pozíciójával együtt. Használatakor figyelembe kellett vennem a képernyőlapozással járó igényeket.
 
 Egyébként e módszerrel biztosítottam azt is, hogy a megjelenő képernyőablakokba csak azok méretein belül lehessen írni, megkönnyítve a UNIT-ot felhasználó munkáját.
 
-### 4. 
+### 4. Mozgatás, kezelés
 
-Programom lehetővé teszi, hogy UNIT-ként történő felhasználása során ne csupán a PROCEDURE move_to eljárást lehessen meghívni -mely adott axist adott fokhelyzetbe visz-, hanem a már említett ablakba írást is megkönnyítettem, és létrehoztam egy billentyűkről történő mozgatást, valamint nézőpont változtatást biztosító procedúrát is.
+Programom lehetővé teszi, hogy UNIT-ként történő felhasználása során ne csupán a `PROCEDURE move_to` eljárást lehessen meghívni - mely adott axist adott fokhelyzetbe visz -, hanem a már említett ablakba írást is megkönnyítettem, és létrehoztam egy billentyűkről történő mozgatást, valamint nézőpont változtatást biztosító procedúrát is.
 
 A forrásprogram jól dokumentált, áttekinthető szerkezetű, könnyen fejleszthető, átalakítható a későbbi felhasználást tekintve. Mindössze egy olyan UNIT-ot használtam fel, mely nincs meg az alap Pascal nyelvben. Ennek használatára csupán azért volt szükség, hogy a felhasznált képernyőmeghajtó file-okat ne kelljen a programmal együtt hordozni, hanem azokat .EXE állományba fordítás során kódolja bele programunkba, ezzel is leegyszerűsítve annak gyakorlati használatát. Listája a mellékletben megtalálható.
 
